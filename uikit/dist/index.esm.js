@@ -3556,11 +3556,11 @@ var links = [
         items: [
             {
                 label: "Exchange",
-                href: "https://exchange.pancakeswap.finance",
+                href: "https://exchange.unitydefi.com",
             },
             {
                 label: "Liquidity",
-                href: "https://exchange.pancakeswap.finance/#/pool",
+                href: "https://exchange.unitydefi.com/#/pool",
             },
         ],
     },
@@ -3850,7 +3850,7 @@ var templateObject_1$9;
 var PriceLink = styled.a(templateObject_1$8 || (templateObject_1$8 = __makeTemplateObject(["\n  display: flex;\n  align-items: center;\n  svg {\n    transition: transform 0.3s;\n  }\n  :hover {\n    svg {\n      transform: scale(1.2);\n    }\n  }\n"], ["\n  display: flex;\n  align-items: center;\n  svg {\n    transition: transform 0.3s;\n  }\n  :hover {\n    svg {\n      transform: scale(1.2);\n    }\n  }\n"])));
 var CakePrice = function (_a) {
     var cakePriceUsd = _a.cakePriceUsd;
-    return cakePriceUsd ? (React.createElement(PriceLink, { href: "https://exchange.pancakeswap.finance/#/swap?outputCurrency=0xb3a95bdbe4ac65b0628db1e6600f71ed59b89255", target: "_blank" },
+    return cakePriceUsd ? (React.createElement(PriceLink, { href: "https://exchange.unitydefi.com/#/swap?outputCurrency=0xb3a95bdbe4ac65b0628db1e6600f71ed59b89255", target: "_blank" },
         React.createElement(Icon$W, { width: "24px", mr: "8px" }),
         React.createElement(Text, { color: "#02acf3", bold: true }, "$" + cakePriceUsd.toFixed(3)))) : (React.createElement(Skeleton, { width: 80, height: 24 }));
 };
