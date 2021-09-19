@@ -36,7 +36,7 @@ const initialState: PoolsState = {
     userData: {
       isLoading: true,
       userShares: null,
-      cakeAtLastUserAction: null,
+      uvAtLastUserAction: null,
       lastDepositedTime: null,
       lastUserActionTime: null,
     },

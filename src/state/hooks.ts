@@ -214,7 +214,7 @@ export const useCakeVault = () => {
     userData: {
       isLoading,
       userShares: userSharesAsString,
-      cakeAtLastUserAction: cakeAtLastUserActionAsString,
+      uvAtLastUserAction: cakeAtLastUserActionAsString,
       lastDepositedTime,
       lastUserActionTime,
     },
@@ -244,7 +244,7 @@ export const useCakeVault = () => {
     return new BigNumber(userSharesAsString)
   }, [userSharesAsString])
 
-  const cakeAtLastUserAction = useMemo(() => {
+  const uvAtLastUserAction = useMemo(() => {
     return new BigNumber(cakeAtLastUserActionAsString)
   }, [cakeAtLastUserActionAsString])
 
@@ -263,7 +263,7 @@ export const useCakeVault = () => {
     userData: {
       isLoading,
       userShares,
-      cakeAtLastUserAction,
+      uvAtLastUserAction,
       lastDepositedTime,
       lastUserActionTime,
     },
@@ -587,20 +587,194 @@ export const useTotalValue = (): BigNumber => {
   const farms = useFarmsData();
   const bnbPrice = usePriceBnbBusd();
   const cakePrice = usePriceCakeBusd();
-  let value = new BigNumber(0);
-  for (let i = 0; i < farms.length; i++) {
-    const farm = farms[i]
-    if (farm.lpTotalInQuoteToken) {
-      let val;
-      if (farm.quoteToken.symbol === "wBNB") {
-        val = (bnbPrice.times(farm.lpTotalInQuoteToken));
-      }else if (farm.quoteToken.symbol === "CAKE") {
-        val = (cakePrice.times(farm.lpTotalInQuoteToken));
-      }else{
-        val = (farm.lpTotalInQuoteToken);
+  const vault = useCakeVault()
+  const { pools } = usePools(null)
+
+  const totalValue = useMemo(() => {
+    let value = new BigNumber(0);
+    for (let i = 0; i < farms.length; i++) {
+      const farm = farms[i]
+      if (farm.lpTotalInQuoteToken) {
+        let val;
+        if (farm.quoteToken.symbol === "wBNB") {
+          val = (bnbPrice.times(farm.lpTotalInQuoteToken));
+        } else if (farm.quoteToken.symbol === "UV") {
+          val = (cakePrice.times(farm.lpTotalInQuoteToken));
+        } else {
+          val = (farm.lpTotalInQuoteToken);
+        }
+        value = value.plus(val);
       }
-      value = value.plus(val);
     }
-  }
-  return value;
+
+    for (let i = 0; i < pools.length; i++) {
+      const pool = pools[i]
+      if (pool.totalStaked.gt(0) && pool.stakingTokenPrice > 0) {
+        value = value.plus(pool.totalStaked.div(10 ** pool.stakingToken.decimals).times(pool.stakingTokenPrice))
+      }
+    }
+
+
+    if (vault.totalCakeInVault.gt(0))
+      value = value.plus(vault.totalCakeInVault.div(10**18).times(cakePrice))
+
+    return value
+  }, [cakePrice, bnbPrice, farms, vault, pools])
+
+
+  return totalValue;
 }
+
+/*
+
+export const useTotalValue = (): BigNumber => {
+  // const [isFetchingFarmData, setIsFetchingFarmData] = useState(true)
+  const { data: farmsLP } = useFarms()
+  const cakePrice = usePriceCakeBusd()
+    const bnbPrice = usePriceBnbBusd();
+  // const dispatch = useAppDispatch()
+  // const { observerRef, isIntersecting } = useIntersectionObserver()
+
+  // // Fetch farm data once to get the max APR
+  // useEffect(() => {
+  //   const fetchFarmData = async () => {
+  //     try {
+  //       await dispatch(fetchFarmsPublicDataAsync(nonArchivedFarms.map((nonArchivedFarm) => nonArchivedFarm.pid)))
+  //     } finally {
+  //       setIsFetchingFarmData(false)
+  //     }
+  //   }
+
+  //   if (isIntersecting) {
+  //     fetchFarmData()
+  //   }
+  // }, [dispatch, setIsFetchingFarmData, isIntersecting])
+
+
+
+  const totalValue = new BigNumber('0');
+  // const totalValue = useMemo(() => {
+  //   if (cakePrice.gt(0)) {
+  //     let value = new BigNumber(0);
+  //     for (let i = 0; i < farmsLP.length; i++) {
+  //       const farm = farmsLP[i]
+  //       if (farm.lpTotalInQuoteToken) {
+  //         let val;
+  //         if (farm.quoteToken.symbol === "wBNB") {
+  //           val = (bnbPrice.times(farm.lpTotalInQuoteToken));
+  //         } else if (farm.quoteToken.symbol === "UV") {
+  //           val = (cakePrice.times(farm.lpTotalInQuoteToken));
+  //         } else {
+  //           val = (farm.lpTotalInQuoteToken);
+  //         }
+  //         value = value.plus(val);
+  //       }
+  //     }
+
+  //     // const { pools } = usePools(null)
+  //     // for (let i = 0; i < pools.length; i++) {
+  //     //   const pool = pools[i]
+  //     //   value = value.plus(pool.totalStaked.times(pool.stakingTokenPrice))
+  //     //   // if (pool.lpTotalInQuoteToken) {
+  //     //   //   let val;
+  //     //   //   if (pool.stakingToken.symbol === "wBNB") {
+  //     //   //     val = (bnbPrice.times(pool.totalStaked));
+  //     //   //   } else {
+  //     //   //     const poolValue =
+  //     //   //     val = (pool.lpTotalInQuoteToken);
+  //     //   //   }
+  //     //   //   value = value.plus(val);
+  //     //   // }
+  //     // }
+
+
+  //     // const vault = useCakeVault()
+  //     // value = value.plus(vault.totalCakeInVault.div(10**18).times(cakePrice))
+
+  //     // setTotalValue(new BigNumber(value.toString()))
+  //   }
+  //   return null
+  // }, [cakePrice, bnbPrice, farmsLP])
+
+
+
+  return totalValue
+
+
+  // const { slowRefresh } = useRefresh()
+  // const [totalValue, setTotalValue] = useState<BigNumber>()
+
+
+  // const dispatch = useAppDispatch()
+  // const [isFetchingFarmData, setIsFetchingFarmData] = useState(true)
+  // const { observerRef, isIntersecting } = useIntersectionObserver()
+
+  // // Fetch farm data once to get the max APR
+  // useEffect(() => {
+  //   const fetchFarmData = async () => {
+  //     try {
+  //       await dispatch(fetchFarmsPublicDataAsync(nonArchivedFarms.map((nonArchivedFarm) => nonArchivedFarm.pid)))
+  //     } finally {
+  //       setIsFetchingFarmData(false)
+  //     }
+  //   }
+
+  //   if (isIntersecting) {
+  //     fetchFarmData()
+  //   }
+  // }, [dispatch, setIsFetchingFarmData, isIntersecting])
+
+
+
+
+
+
+  // useEffect(() => {
+  //   async function fetchTotalValue() {
+
+  //     const farms = useFarmsData();
+  //     let value = new BigNumber(0);
+  //     for (let i = 0; i < farms.length; i++) {
+  //       const farm = farms[i]
+  //       if (farm.lpTotalInQuoteToken) {
+  //         let val;
+  //         if (farm.quoteToken.symbol === "wBNB") {
+  //           val = (bnbPrice.times(farm.lpTotalInQuoteToken));
+  //         } else if (farm.quoteToken.symbol === "UV") {
+  //           val = (cakePrice.times(farm.lpTotalInQuoteToken));
+  //         } else {
+  //           val = (farm.lpTotalInQuoteToken);
+  //         }
+  //         value = value.plus(val);
+  //       }
+  //     }
+
+  //     // const { pools } = usePools(null)
+  //     // for (let i = 0; i < pools.length; i++) {
+  //     //   const pool = pools[i]
+  //     //   value = value.plus(pool.totalStaked.times(pool.stakingTokenPrice))
+  //     //   // if (pool.lpTotalInQuoteToken) {
+  //     //   //   let val;
+  //     //   //   if (pool.stakingToken.symbol === "wBNB") {
+  //     //   //     val = (bnbPrice.times(pool.totalStaked));
+  //     //   //   } else {
+  //     //   //     const poolValue =
+  //     //   //     val = (pool.lpTotalInQuoteToken);
+  //     //   //   }
+  //     //   //   value = value.plus(val);
+  //     //   // }
+  //     // }
+
+
+  //     // const vault = useCakeVault()
+  //     // value = value.plus(vault.totalCakeInVault.div(10**18).times(cakePrice))
+
+  //     setTotalValue(new BigNumber(value.toString()))
+  //   }
+
+  //   fetchTotalValue()
+  // }, [slowRefresh])
+
+  // return totalValue
+}
+*/

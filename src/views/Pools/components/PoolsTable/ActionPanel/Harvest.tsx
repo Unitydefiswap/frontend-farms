@@ -43,13 +43,13 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
 
   // Auto UV vault calculations
   const {
-    userData: { cakeAtLastUserAction, userShares },
+    userData: { uvAtLastUserAction, userShares },
     pricePerFullShare,
     fees: { performanceFee },
   } = useCakeVault()
   const { hasAutoEarnings, autoCakeToDisplay, autoUsdToDisplay } = getCakeVaultEarnings(
     account,
-    cakeAtLastUserAction,
+    uvAtLastUserAction,
     userShares,
     pricePerFullShare,
     earningTokenPrice,

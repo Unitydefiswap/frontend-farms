@@ -1,9 +1,9 @@
 import fs from 'fs'
 import { request, gql } from 'graphql-request'
 import BigNumber from 'bignumber.js'
-import { ChainId } from '@pancakeswap-libs/sdk'
 import chunk from 'lodash/chunk'
 import { sub, getUnixTime } from 'date-fns'
+import { ChainId } from '@pancakeswap/sdk'
 import farmsConfig from '../src/config/constants/farms'
 
 const BLOCK_SUBGRAPH_ENDPOINT = 'https://api.thegraph.com/subgraphs/name/pancakeswap/blocks'
