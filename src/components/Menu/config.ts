@@ -7,24 +7,24 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     icon: 'HomeIcon',
     href: '/',
   },
-  // {
-  //   label: t('Trade'),
-  //   icon: 'TradeIcon',
-  //   items: [
-  //     {
-  //       label: t('Exchange'),
-  //       href: 'https://exchange.unitydefi.com/#/swap',
-  //     },
-  //     {
-  //       label: t('Liquidity'),
-  //       href: 'https://exchange.unitydefi.com/#/pool',
-  //     },
-  //     // {
-  //     //   label: t('LP Migration'),
-  //     //   href: 'https://exchange.unitydefi.com/#/migrate',
-  //     // },
-  //   ],
-  // },
+  {
+    label: t('Trade'),
+    icon: 'TradeIcon',
+    items: [
+      {
+        label: t('Exchange'),
+        href: 'https://exchange.unitydefi.com/#/swap',
+      },
+      {
+        label: t('Liquidity'),
+        href: 'https://exchange.unitydefi.com/#/pool',
+      },
+      // {
+      //   label: t('LP Migration'),
+      //   href: 'https://exchange.unitydefi.com/#/migrate',
+      // },
+    ],
+  },
   {
     label: t('Farms'),
     icon: 'FarmIcon',
