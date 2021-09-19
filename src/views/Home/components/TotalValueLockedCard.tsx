@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Card, CardBody, Heading, Skeleton, Text } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 // import { useGetStats } from 'hooks/api'
-import { useTotalValue } from '../../../state/hooks'
+import { useFetchCakeVault, useFetchPublicPoolsData, usePollFarmsData, useTotalValue } from '../../../state/hooks'
 
 const StyledTotalValueLockedCard = styled(Card)`
   align-items: center;
@@ -13,6 +13,11 @@ const StyledTotalValueLockedCard = styled(Card)`
 
 const TotalValueLockedCard = () => {
   const { t } = useTranslation()
+
+  usePollFarmsData()
+  useFetchCakeVault()
+  useFetchPublicPoolsData()
+
   // const data = useGetStats()
   // const tvl = data ? data.tvl.toLocaleString('en-US', { maximumFractionDigits: 0 }) : null
   const totalValue = useTotalValue()
