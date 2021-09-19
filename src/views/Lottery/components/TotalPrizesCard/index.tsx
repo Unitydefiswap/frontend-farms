@@ -80,7 +80,7 @@ const TotalPrizesCard = () => {
               </Text>
               <Heading size="lg">0 UV</Heading>
               {/* <Heading size="lg">{lotteryPrizeWithCommaSeparators} UV</Heading> */}
-              </PrizeCountWrapper>
+            </PrizeCountWrapper>
           </Left>
           <Right>
             <ExpandableSectionButton onClick={() => setShowFooter(!showFooter)} expanded={showFooter} />

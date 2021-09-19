@@ -149,13 +149,8 @@ const Pools: React.FC = () => {
               return 0
             }
             return pool.isAutoVault
-              ? getCakeVaultEarnings(
-                  account,
-                  uvAtLastUserAction,
-                  userShares,
-                  pricePerFullShare,
-                  pool.earningTokenPrice,
-                ).autoUsdToDisplay
+              ? getCakeVaultEarnings(account, uvAtLastUserAction, userShares, pricePerFullShare, pool.earningTokenPrice)
+                  .autoUsdToDisplay
               : pool.userData.pendingReward.times(pool.earningTokenPrice).toNumber()
           },
           'desc',

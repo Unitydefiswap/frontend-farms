@@ -584,26 +584,26 @@ export const useLottery = () => {
 }
 
 export const useTotalValue = (): BigNumber => {
-  const farms = useFarmsData();
-  const bnbPrice = usePriceBnbBusd();
-  const cakePrice = usePriceCakeBusd();
+  const farms = useFarmsData()
+  const bnbPrice = usePriceBnbBusd()
+  const cakePrice = usePriceCakeBusd()
   const vault = useCakeVault()
   const { pools } = usePools(null)
 
   const totalValue = useMemo(() => {
-    let value = new BigNumber(0);
+    let value = new BigNumber(0)
     for (let i = 0; i < farms.length; i++) {
       const farm = farms[i]
       if (farm.lpTotalInQuoteToken) {
-        let val;
-        if (farm.quoteToken.symbol === "wBNB") {
-          val = (bnbPrice.times(farm.lpTotalInQuoteToken));
-        } else if (farm.quoteToken.symbol === "UV") {
-          val = (cakePrice.times(farm.lpTotalInQuoteToken));
+        let val
+        if (farm.quoteToken.symbol === 'wBNB') {
+          val = bnbPrice.times(farm.lpTotalInQuoteToken)
+        } else if (farm.quoteToken.symbol === 'UV') {
+          val = cakePrice.times(farm.lpTotalInQuoteToken)
         } else {
-          val = (farm.lpTotalInQuoteToken);
+          val = farm.lpTotalInQuoteToken
         }
-        value = value.plus(val);
+        value = value.plus(val)
       }
     }
 
@@ -614,15 +614,12 @@ export const useTotalValue = (): BigNumber => {
       }
     }
 
-
-    if (vault.totalCakeInVault.gt(0))
-      value = value.plus(vault.totalCakeInVault.div(10**18).times(cakePrice))
+    if (vault.totalCakeInVault.gt(0)) value = value.plus(vault.totalCakeInVault.div(10 ** 18).times(cakePrice))
 
     return value
   }, [cakePrice, bnbPrice, farms, vault, pools])
 
-
-  return totalValue;
+  return totalValue
 }
 
 /*

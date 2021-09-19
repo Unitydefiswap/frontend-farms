@@ -24,7 +24,9 @@ const ReferralPanel: React.FC = () => {
   return (
     <Card>
       <Hero>
-         <Text style={{marginBottom:'25px'}}>{`Earn 1% of your UnityVentures friends earnings! use this link to invite friends: `}</Text>
+        <Text
+          style={{ marginBottom: '25px' }}
+        >{`Earn 1% of your UnityVentures friends earnings! use this link to invite friends: `}</Text>
       </Hero>
     </Card>
   )

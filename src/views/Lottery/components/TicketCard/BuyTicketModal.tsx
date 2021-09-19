@@ -79,11 +79,7 @@ const BuyTicketModal: React.FC<BuyTicketModalProps> = ({ max, onDismiss }) => {
         <Tips>{t('1 Ticket = 1 UV')}</Tips>
       </div>
       <div>
-        <Announce>
-          {t(
-            'Ticket purchases are final. Your UV cannot be returned to you after buying tickets.',
-          )}
-        </Announce>
+        <Announce>{t('Ticket purchases are final. Your UV cannot be returned to you after buying tickets.')}</Announce>
         <Final>{t(`You will spend: ${cakeCosts(val)} UV`)}</Final>
       </div>
       <ModalActions>

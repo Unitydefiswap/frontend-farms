@@ -22,9 +22,7 @@ const WinningNumbers: React.FC = () => {
           <StyledCardContentInner>
             <StyledCardHeader>
               <Title>
-                {account && lotteryHasDrawn
-                  ? `🥳${t('Winning Numbers This Round')}🥳`
-                  : t('Latest Winning Numbers')}
+                {account && lotteryHasDrawn ? `🥳${t('Winning Numbers This Round')}🥳` : t('Latest Winning Numbers')}
               </Title>
               <br />
             </StyledCardHeader>

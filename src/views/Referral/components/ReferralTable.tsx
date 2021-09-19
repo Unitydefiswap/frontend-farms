@@ -59,18 +59,18 @@ const ReferralTable: React.FC = () => {
       <Hero>
         {account && (
           <>
-          <Heading scale="md" color="text" style={{ marginBottom: '15px' }}>
-            {t('Use this link to invite friends:')}
-          </Heading>
-          <div>
-            <a href={`https://unitydefi.com?uv-friend=${account}`}>
-              <Text style={{ overflowWrap: 'anywhere' }}>{`https://unitydefi.com?uv-friend=${account}`}</Text>
-            </a>
-            <div style={{ marginTop: '15px' }}>
-              <Text> Total UnityVentures friends : {referralFriends}</Text>
-              <Text>Total Referral Commissions : {totalReferralCommissions / 10 ** 18} UVs</Text>
+            <Heading scale="md" color="text" style={{ marginBottom: '15px' }}>
+              {t('Use this link to invite friends:')}
+            </Heading>
+            <div>
+              <a href={`https://unitydefi.com?uv-friend=${account}`}>
+                <Text style={{ overflowWrap: 'anywhere' }}>{`https://unitydefi.com?uv-friend=${account}`}</Text>
+              </a>
+              <div style={{ marginTop: '15px' }}>
+                <Text> Total UnityVentures friends : {referralFriends}</Text>
+                <Text>Total Referral Commissions : {totalReferralCommissions / 10 ** 18} UVs</Text>
+              </div>
             </div>
-          </div>
           </>
         )}
         {!account && (

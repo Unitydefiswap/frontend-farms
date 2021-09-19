@@ -68,11 +68,7 @@ const TicketCard: React.FC = () => {
 
   return (
     <CardActions>
-      {lotteryHasDrawn ? (
-        <Button disabled> {t('On sale soon')}</Button>
-      ) : (
-        renderLotteryTicketButtons()
-      )}
+      {lotteryHasDrawn ? <Button disabled> {t('On sale soon')}</Button> : renderLotteryTicketButtons()}
     </CardActions>
   )
 }

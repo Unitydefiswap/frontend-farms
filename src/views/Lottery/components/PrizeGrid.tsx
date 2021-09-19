@@ -89,7 +89,7 @@ const PrizeGrid: React.FC<PrizeGridProps> = ({
       )}
       <GridItem>
         {/* <RightAlignedText>{threeMatchesAmount.toLocaleString()}</RightAlignedText> */}
-        <RightAlignedText>{0}</RightAlignedText>        
+        <RightAlignedText>{0}</RightAlignedText>
       </GridItem>
       {/* 2 matches row */}
       <GridItem marginBottom="20px">

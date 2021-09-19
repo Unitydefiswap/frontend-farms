@@ -3,7 +3,6 @@ import { Text } from '@pancakeswap/uikit'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useTotalRewards } from 'views/Lottery/hooks/useTickets'
 
-
 const LotteryJackpot = () => {
   const lotteryPrizeAmount = useTotalRewards()
 

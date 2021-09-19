@@ -36,23 +36,23 @@ const Referral: React.FC = () => {
 
   return (
     <>
-    <PageHeader>
-    <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
-      <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
-        <Heading as="h1" scale="xxl" color="secondary" mb="24px">
-          {t('Referral')}
-        </Heading>
-        <Heading scale="md" color="text">
-          {t('Earn 1% of your UnityVentures friends earnings!')}
-        </Heading>
-      </Flex>
-    </Flex>
-  </PageHeader>
-    <Page>
-      <Cards>
-        <ReferralTable />
-      </Cards>
-    </Page>
+      <PageHeader>
+        <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
+          <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
+            <Heading as="h1" scale="xxl" color="secondary" mb="24px">
+              {t('Referral')}
+            </Heading>
+            <Heading scale="md" color="text">
+              {t('Earn 1% of your UnityVentures friends earnings!')}
+            </Heading>
+          </Flex>
+        </Flex>
+      </PageHeader>
+      <Page>
+        <Cards>
+          <ReferralTable />
+        </Cards>
+      </Page>
     </>
   )
 }

@@ -4,7 +4,13 @@ import BigNumber from 'bignumber.js'
 import { useLottery, useLotteryTicket } from 'hooks/useContract'
 import { BIG_ZERO } from 'utils/bigNumber'
 import useRefresh from 'hooks/useRefresh'
-import { getTotalRewards, getTotalClaim, getWinningNumbers, getTickets, getMatchingRewardLength } from 'utils/lotteryUtils'
+import {
+  getTotalRewards,
+  getTotalClaim,
+  getWinningNumbers,
+  getTickets,
+  getMatchingRewardLength,
+} from 'utils/lotteryUtils'
 import useLastUpdated from 'hooks/useLastUpdated'
 
 const useTickets = (lotteryNumber = null) => {

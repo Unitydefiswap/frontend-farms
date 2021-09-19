@@ -44,7 +44,7 @@ const farms: FarmConfig[] = [
     },
     token: tokens.ryiu,
     quoteToken: tokens.wbnb,
-  }
+  },
 ]
 
 export default farms

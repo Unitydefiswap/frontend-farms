@@ -15,7 +15,7 @@ const TotalValueLockedCard = () => {
   const { t } = useTranslation()
   // const data = useGetStats()
   // const tvl = data ? data.tvl.toLocaleString('en-US', { maximumFractionDigits: 0 }) : null
-  const totalValue = useTotalValue();
+  const totalValue = useTotalValue()
   const tvl = totalValue?.isFinite() ? totalValue.toNumber().toLocaleString('en-US', { maximumFractionDigits: 0 }) : ''
 
   return (

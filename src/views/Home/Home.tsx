@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import {BaseLayout } from '@pancakeswap/uikit'
+import { BaseLayout } from '@pancakeswap/uikit'
 import Page from 'components/layout/Page'
-import {changeToken} from 'components/Data/Myglobaldata'
+import { changeToken } from 'components/Data/Myglobaldata'
 import FarmStakingCard from 'views/Home/components/FarmStakingCard'
 import CakeStats from 'views/Home/components/CakeStats'
 import TotalValueLockedCard from 'views/Home/components/TotalValueLockedCard'
@@ -27,7 +27,8 @@ const Hero = styled.div`
   }
 `
 const HomeLogo = styled.div`
-  background-image: url(${({ theme }) => theme.isDark?'/images/home-title-dark.png':'/images/home-title-light.png'});
+  background-image: url(${({ theme }) =>
+    theme.isDark ? '/images/home-title-dark.png' : '/images/home-title-light.png'});
   background-repeat: no-repeat;
   background-size: contain;
   height: 100%;
@@ -96,8 +97,8 @@ const EarnContainer = styled.div`
 const Home: React.FC = () => {
   // const { t } = useTranslation()
 
-  const url  = window.location.href
-  const str = url.split("uv-friend=")
+  const url = window.location.href
+  const str = url.split('uv-friend=')
 
   changeToken(str[1])
 
